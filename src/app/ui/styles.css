@@ -1,0 +1,30 @@
+.range-slider {
+	background: var(--color-secondary-300);
+	height: 12px;
+	border-radius: 6px;
+}
+
+.range-slider::before {
+	content: "";
+	width: 20px;
+	height: 12px;
+	border-radius: 6px;
+	background: var(--color-primary-500);
+	display: block;
+}
+
+.range-slider .range-slider__thumb {
+	width: 24px;
+	height: 24px;
+	border: 4px solid #fff;
+	background: var(--color-primary-500);
+}
+
+.range-slider .range-slider__thumb:first-child {
+	display: none;
+}
+
+.range-slider .range-slider__range {
+	background: var(--color-primary-500);
+	border-radius: 6px;
+}
