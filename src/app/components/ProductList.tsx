@@ -6,10 +6,17 @@ interface ProductListProps {
   products: Product[];
   isFeatured?: boolean;
   isRecommended?: boolean;
+  isWishlist?: boolean;
   className?: string;
 }
 
-const ProductList = ({ products, isFeatured = false, isRecommended = false, className = '' }: ProductListProps) => {
+const ProductList = ({
+  products,
+  isFeatured = false,
+  isRecommended = false,
+  isWishlist = false,
+  className = '',
+}: ProductListProps) => {
   if (!products || products.length === 0) {
     return <h2 className="text-4xl font-semibold">No products found.</h2>;
   }
@@ -41,7 +48,10 @@ const ProductList = ({ products, isFeatured = false, isRecommended = false, clas
         <div className="mb-5 flex w-full items-center justify-between">
           <h4 className="text-secondary-300 px-5 py-2.5 text-base font-semibold">{settings.title}</h4>
           {settings.showLink && (
-            <Link className="text-primary-500 px-5 py-2.5 text-base font-semibold" href="/cars">
+            <Link
+              className="text-primary-500 px-5 py-2.5 text-base font-semibold transition-colors hover:text-blue-800"
+              href="/cars"
+            >
               View All
             </Link>
           )}
@@ -49,7 +59,9 @@ const ProductList = ({ products, isFeatured = false, isRecommended = false, clas
       )}
       <div
         className={`grid w-full grid-cols-1 gap-8 ${
-          isFeatured || isRecommended ? 'md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4' : 'lg:grid-cols-2 xl:grid-cols-3'
+          isFeatured || isRecommended || isWishlist
+            ? 'md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'
+            : 'lg:grid-cols-2 xl:grid-cols-3'
         } `}
       >
         {renderProducts.map((product) => (

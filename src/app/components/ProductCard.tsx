@@ -46,7 +46,9 @@ const ProductCard = ({
         <div className="mt-auto flex flex-col pb-1">
           <div className="flex items-end justify-center">
             {imgSrc ? (
-              <Image src={imgSrc} width={imgWidth} height={imgHeight} alt="" loading="lazy" />
+              <Link href={linkUrl}>
+                <Image src={imgSrc} width={imgWidth} height={imgHeight} alt="" loading="lazy" />
+              </Link>
             ) : (
               <Image
                 className="opacity-25 grayscale"

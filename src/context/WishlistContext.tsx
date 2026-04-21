@@ -2,24 +2,40 @@
 
 import { createContext, useContext, useState, useEffect } from 'react';
 
-const WishlistContext = createContext<any>(null);
+interface WishlistContextType {
+  wishlist: string[];
+  toggleWishlist: (id: string) => void;
+}
+
+const WishlistContext = createContext<WishlistContextType | undefined>(undefined);
 
 export const WishlistProvider = ({ children }: { children: React.ReactNode }) => {
   const [wishlist, setWishlist] = useState<string[]>([]);
+  const [isInitialized, setIsInitialized] = useState(false);
 
   useEffect(() => {
     const saved = localStorage.getItem('wishlist');
-    if (saved) setWishlist(JSON.parse(saved));
+    if (saved) {
+      setWishlist(JSON.parse(saved));
+    }
+    setIsInitialized(true);
   }, []);
 
-  const toggleWishlist = (id: string) => {
-    const newList = wishlist.includes(id) ? wishlist.filter((item) => item !== id) : [...wishlist, id];
+  useEffect(() => {
+    if (isInitialized) {
+      localStorage.setItem('wishlist', JSON.stringify(wishlist));
+    }
+  }, [wishlist, isInitialized]);
 
-    setWishlist(newList);
-    localStorage.setItem('wishlist', JSON.stringify(newList));
+  const toggleWishlist = (id: string) => {
+    setWishlist((prev) => (prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]));
   };
 
   return <WishlistContext.Provider value={{ wishlist, toggleWishlist }}>{children}</WishlistContext.Provider>;
 };
 
-export const useWishlist = () => useContext(WishlistContext);
+export const useWishlist = () => {
+  const context = useContext(WishlistContext);
+  if (!context) throw new Error('useWishlist must be used within a WishlistProvider');
+  return context;
+};
