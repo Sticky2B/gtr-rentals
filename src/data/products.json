@@ -6,7 +6,7 @@
     "fuel": "90L",
     "transmission": "Manual",
     "seats": "2",
-    "price": 99.00,
+    "price": 99.0,
     "imgSrc": "/cars/koenigsegg-jesko.png",
     "imgWidth": 304,
     "imgHeight": 68
@@ -18,7 +18,7 @@
     "fuel": "80L",
     "transmission": "Manual",
     "seats": "2",
-    "price": 80.00,
+    "price": 80.0,
     "imgSrc": "/cars/nissan-gtr.png",
     "imgWidth": 228,
     "imgHeight": 72
@@ -30,7 +30,7 @@
     "fuel": "70L",
     "transmission": "Automatic",
     "seats": "4",
-    "price": 96.00,
+    "price": 96.0,
     "imgSrc": "/cars/rolls-royce.png",
     "imgWidth": 244,
     "imgHeight": 76
@@ -42,7 +42,7 @@
     "fuel": "90L",
     "transmission": "Automatic",
     "seats": "2",
-    "price": 94.00,
+    "price": 94.0,
     "imgSrc": "/cars/chevrolet-corvette-c8.png",
     "imgWidth": 252,
     "imgHeight": 70
@@ -54,7 +54,7 @@
     "fuel": "86L",
     "transmission": "Manual",
     "seats": "4",
-    "price": 92.00,
+    "price": 92.0,
     "imgSrc": "/cars/ford-mustang.png",
     "imgWidth": 252,
     "imgHeight": 97
@@ -66,7 +66,7 @@
     "fuel": "N/A",
     "transmission": "Electric",
     "seats": "5",
-    "price": 84.00,
+    "price": 84.0,
     "imgSrc": "/cars/tesla-model-3.png",
     "imgWidth": 270,
     "imgHeight": 106
@@ -78,7 +78,7 @@
     "fuel": "90L",
     "transmission": "Manual",
     "seats": "2",
-    "price": 95.00,
+    "price": 95.0,
     "imgSrc": "/cars/ferrari-sf90.png",
     "imgWidth": 252,
     "imgHeight": 72
@@ -90,7 +90,7 @@
     "fuel": "70L",
     "transmission": "Manual",
     "seats": "6",
-    "price": 72.00,
+    "price": 72.0,
     "imgSrc": "/cars/all-new-rush.png",
     "imgWidth": 252,
     "imgHeight": 112
@@ -102,7 +102,7 @@
     "fuel": "80L",
     "transmission": "Manual",
     "seats": "5",
-    "price": 80.00,
+    "price": 80.0,
     "imgSrc": "/cars/honda-crv.png",
     "imgWidth": 255,
     "imgHeight": 102
@@ -114,7 +114,7 @@
     "fuel": "90L",
     "transmission": "Manual",
     "seats": "6",
-    "price": 74.00,
+    "price": 74.0,
     "imgSrc": "/cars/all-new-terios.png",
     "imgWidth": 252,
     "imgHeight": 112
@@ -126,7 +126,7 @@
     "fuel": "70L",
     "transmission": "Electric",
     "seats": "4",
-    "price": 76.00,
+    "price": 76.0,
     "imgSrc": "/cars/mg-zx-exclusive.png",
     "imgWidth": 264,
     "imgHeight": 108
@@ -138,7 +138,7 @@
     "fuel": "80L",
     "transmission": "Manual",
     "seats": "6",
-    "price": 80.00,
+    "price": 80.0,
     "imgSrc": "/cars/new-mg-zs.png",
     "imgWidth": 308,
     "imgHeight": 120
