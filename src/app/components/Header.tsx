@@ -20,7 +20,7 @@ const Header = () => {
   }, []);
 
   const iconLinkRounded =
-    'relative w-11 h-11 flex justify-center items-center rounded-full border border-[#c3d4e9]/40 transition-colors hover:border-[#c3d4e9] hover:shadow-sm';
+    'relative w-11 h-11 flex justify-center items-center rounded-full bg-white/75 border border-[#c3d4e9]/40 transition-colors hover:border-[#c3d4e9] hover:shadow-sm';
 
   return (
     <header
