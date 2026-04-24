@@ -1,38 +1,20 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { Product } from '@/types/product';
 import { GasStation, Lifebuoy, Profile2User } from 'iconsax-reactjs';
-import Button from '@/app/ui/Button';
-import WishlistButton from '@/app/ui/WishlistButton';
+import Button from '@/components/ui/Button';
+import WishlistButton from '@/components/ui/WishlistButton';
 
 interface ProductCardProps {
-  productid: string;
-  title: string;
-  category?: string;
-  fuel?: string;
-  transmission?: string;
-  seats?: string;
-  price?: number;
-  linkText?: string;
-  linkUrl?: string;
-  imgSrc?: string;
-  imgWidth?: number;
-  imgHeight?: number;
+  key: string;
+  product: Product;
 }
 
-const ProductCard = ({
-  productid,
-  title,
-  category,
-  fuel,
-  transmission,
-  seats,
-  price = 0,
-  linkText = 'Rent Now',
-  linkUrl = '#',
-  imgSrc,
-  imgWidth,
-  imgHeight,
-}: ProductCardProps) => {
+const ProductCard = ({ product }: ProductCardProps) => {
+  const { productid, title, category, fuel, transmission, seats, price, imgSrc, imgWidth, imgHeight } = product;
+  const linkUrl = `/cars/${productid}`;
+  const linkText = 'Rent Now';
+
   return (
     <div className="rounded-xl bg-white transition-all hover:shadow-lg">
       <div className="flex h-full min-h-97 w-full flex-col px-6 py-5">

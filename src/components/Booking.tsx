@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import BookingSection from '@/app/components/BookingSection';
+import BookingSection from '@/components/BookingSection';
 
 const Booking = () => {
   const [bookingActive, setBookingActive] = useState(true);

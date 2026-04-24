@@ -1,9 +1,10 @@
 import type { Metadata } from 'next';
 import { Plus_Jakarta_Sans } from 'next/font/google';
-import Header from '@/app/components/Header';
-import Footer from '@/app/components/Footer';
+import { ProductProvider } from '@/context/ProductContext';
 import { WishlistProvider } from '@/context/WishlistContext';
-import './globals.css';
+import Header from '@/components/shared/Header';
+import Footer from '@/components/shared/Footer';
+import '@/styles/globals.css';
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   variable: '--font-plus-jakarta-sans',
@@ -23,9 +24,11 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${plusJakartaSans.variable} antialiased`}>
       <body>
-        <Header />
-        <WishlistProvider>{children}</WishlistProvider>
-        <Footer />
+        <ProductProvider>
+          <Header />
+          <WishlistProvider>{children}</WishlistProvider>
+          <Footer />
+        </ProductProvider>
       </body>
     </html>
   );

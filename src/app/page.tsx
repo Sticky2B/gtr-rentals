@@ -1,12 +1,13 @@
-import products from '@/data/products.json';
-import HeroBanner from '@/app/components/HeroBanner';
-import Booking from '@/app/components/Booking';
-import ProductList from '@/app/components/ProductList';
+'use client';
 
-// Regenerate random cars on every refresh
-export const revalidate = 0;
+import { useProducts } from '@/context/ProductContext';
+import HeroBanner from '@/components/HeroBanner';
+import Booking from '@/components/Booking';
+import ProductList from '@/components/ProductList';
 
 export default function Home() {
+  const { products } = useProducts();
+
   return (
     <main className="flex flex-col gap-8 p-8">
       <HeroBanner />

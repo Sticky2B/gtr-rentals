@@ -1,13 +1,14 @@
 'use client';
 
 import React, { useState, useRef, useEffect } from 'react';
-import products from '@/data/products.json';
+import { useProducts } from '@/context/ProductContext';
 import Fuse from 'fuse.js';
 import { SearchNormal1, Setting4 } from 'iconsax-reactjs';
 import Image from 'next/image';
 import Link from 'next/link';
 
 const Search = () => {
+  const { products } = useProducts();
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [isFocused, setIsFocused] = useState(false);
   const searchContainerRef = useRef<HTMLDivElement>(null);
@@ -97,7 +98,7 @@ const Search = () => {
                           setSearchQuery('');
                         }}
                       >
-                        <Image src={car.item.imgSrc} width={72} height={32} alt="" loading="lazy" />
+                        <Image src={car.item.imgSrc || ''} width={72} height={32} alt="" loading="lazy" />
                         <span className="text-secondary-400 text-sm font-semibold">{car.item.title}</span>
                       </Link>
                     </li>

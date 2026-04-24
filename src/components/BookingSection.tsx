@@ -1,5 +1,5 @@
 import React from 'react';
-import BookingDataPoint from '@/app/components/BookingDataPoint';
+import BookingDataPoint from '@/components/BookingDataPoint';
 
 interface BookingSectionProps {
   title: string;

@@ -1,9 +1,12 @@
-import products from '@/data/products.json';
-import Booking from '@/app/components/Booking';
-import Filters from '@/app/components/Filters';
-import ProductList from '@/app/components/ProductList';
+'use client';
 
-export default async function CarsListPage({
+import { use } from 'react';
+import { useProducts } from '@/context/ProductContext';
+import Booking from '@/components/Booking';
+import Filters from '@/components/shared/Filters';
+import ProductList from '@/components/ProductList';
+
+export default function CarsListPage({
   searchParams,
 }: {
   searchParams: Promise<{
@@ -12,7 +15,8 @@ export default async function CarsListPage({
     maxPrice?: string;
   }>;
 }) {
-  const params = await searchParams;
+  const { products } = useProducts();
+  const params = use(searchParams);
 
   const typeString = Array.isArray(params.type) ? params.type[0] : params.type;
   const selectedTypes = (typeString ?? '').split(',').filter(Boolean);

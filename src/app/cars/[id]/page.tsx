@@ -1,10 +1,22 @@
-import products from '@/data/products.json';
+'use client';
+
+import { use } from 'react';
+import { useProducts } from '@/context/ProductContext';
 import { notFound } from 'next/navigation';
 
-export default async function CarDetailPage({ params }: { params: Promise<{ id: string }> }) {
-  const { id } = await params;
+export default function CarDetailPage({ params }: { params: Promise<{ id: string }> }) {
+  const { products, loading } = useProducts();
+  const { id } = use(params);
 
-  const car = products.find((p) => p.productid === id);
+  if (loading) {
+    return (
+      <div className="p-8">
+        <div className="h-96 w-full animate-pulse rounded-xl bg-slate-200" />
+      </div>
+    );
+  }
+
+  const car = products.find((p) => String(p.productid) === id);
 
   if (!car) {
     notFound();

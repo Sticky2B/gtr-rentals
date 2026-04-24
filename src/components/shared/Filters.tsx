@@ -1,22 +1,24 @@
 'use client';
 
-import products from '@/data/products.json';
 import { useMemo, useState } from 'react';
 import { useDebouncedCallback } from 'use-debounce';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import Checkbox from '@/app/ui/Checkbox';
+import { useProducts } from '@/context/ProductContext';
+import Checkbox from '@/components/ui/Checkbox';
 import RangeSlider from 'react-range-slider-input';
 import 'react-range-slider-input/dist/style.css';
-import '@/app/ui/styles.css';
+import '@/styles/styles.css';
 
 const Filters = () => {
+  const { products } = useProducts();
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
   const absoluteMaxPrice = useMemo(() => {
-    return Math.max(...products.map((car) => car.price), 0);
-  }, []);
+    return Math.max(...products.map((car) => car.price ?? 0), 0);
+  }, [products]);
+
   const [currentPrice, setCurrentPrice] = useState<string>(
     searchParams.get('maxPrice') || absoluteMaxPrice?.toString()
   );
@@ -32,7 +34,7 @@ const Filters = () => {
       },
       {} as Record<string, number>
     );
-  }, []);
+  }, [products]);
 
   const capacityCount = useMemo(() => {
     return products.reduce(
@@ -42,7 +44,7 @@ const Filters = () => {
       },
       {} as Record<string, number>
     );
-  }, []);
+  }, [products]);
 
   const toggleFilter = (name: string, value: string) => {
     const params = new URLSearchParams(searchParams.toString());
