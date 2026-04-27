@@ -4,7 +4,7 @@ import { useMemo, useState } from 'react';
 import { useDebouncedCallback } from 'use-debounce';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useProducts } from '@/context/ProductContext';
-import Checkbox from '@/components/ui/Checkbox';
+import Filter from '@/components/shared/Filter';
 import RangeSlider from 'react-range-slider-input';
 import 'react-range-slider-input/dist/style.css';
 import '@/styles/styles.css';
@@ -86,40 +86,29 @@ const Filters = () => {
     <aside className="flex w-90 shrink-0 flex-col bg-white p-8">
       <div className="sticky top-25">
         <div className="flex flex-col gap-15">
-          {/* TODO: create "Filter" component */}
-          <div className="relative">
-            <span className="text-secondary-300 mb-7 block text-xs font-semibold tracking-widest uppercase">Type</span>
-            <div className="flex flex-col gap-8">
-              {categories.map((filter) => (
-                <Checkbox
-                  key={filter}
-                  id={filter}
-                  label={filter}
-                  results={categoryCount[filter] || 0}
-                  checked={(searchParams.get('type') || '').split(',').includes(filter)}
-                  onChange={() => toggleFilter('type', filter)}
-                />
-              ))}
-            </div>
-          </div>
+          <Filter
+            title="Type"
+            options={categories.map((filter) => ({
+              id: String(filter),
+              label: String(filter),
+              value: String(filter),
+              results: categoryCount[filter as keyof typeof categoryCount] || 0,
+            }))}
+            selectedValues={(searchParams.get('type') || '').split(',')}
+            onChange={(value) => toggleFilter('type', value)}
+          />
 
-          <div className="relative">
-            <span className="text-secondary-300 mb-7 block text-xs font-semibold tracking-widest uppercase">
-              Capacity
-            </span>
-            <div className="flex flex-col gap-8">
-              {capacity.map((seats) => (
-                <Checkbox
-                  key={seats}
-                  id={`cap-${seats}`}
-                  label={`${seats} Person`}
-                  results={capacityCount[seats] || 0}
-                  checked={(searchParams.get('capacity') || '').split(',').includes(seats)}
-                  onChange={() => toggleFilter('capacity', seats)}
-                />
-              ))}
-            </div>
-          </div>
+          <Filter
+            title="Capacity"
+            options={capacity.map((seats) => ({
+              id: `cap-${seats}`,
+              label: `${seats} Person`,
+              value: String(seats),
+              results: capacityCount[seats as keyof typeof capacityCount] || 0,
+            }))}
+            selectedValues={(searchParams.get('capacity') || '').split(',')}
+            onChange={(value) => toggleFilter('capacity', value)}
+          />
 
           <div className="relative">
             <span className="text-secondary-300 mb-7 block text-xs font-semibold tracking-widest uppercase">Price</span>

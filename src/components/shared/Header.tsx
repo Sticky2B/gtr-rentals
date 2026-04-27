@@ -1,9 +1,10 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import Link from 'next/link';
+import { Link } from '@/i18n/navigation';
 import Image from 'next/image';
-import Search from './Search';
+import Search from '@/components/shared/Search';
+import LocaleSwitcher from '@/components/shared/LocaleSwitcher';
 import { Heart, Notification, Setting2 } from 'iconsax-reactjs';
 
 const Header = () => {
@@ -36,6 +37,7 @@ const Header = () => {
         </Link>
         <Search />
         <nav className="ml-auto flex items-center gap-5">
+          <LocaleSwitcher />
           <Link className={iconLinkRounded} href="/wishlist">
             <Heart color="var(--color-secondary-400)" variant="Bold" size={24} />
           </Link>

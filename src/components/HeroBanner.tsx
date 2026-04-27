@@ -1,4 +1,4 @@
-import HeroCard from './HeroCard';
+import HeroCard from '@/components/HeroCard';
 
 const HeroBanner = () => {
   return (

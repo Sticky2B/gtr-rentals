@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 import { Plus_Jakarta_Sans } from 'next/font/google';
+import { NextIntlClientProvider, useLocale } from 'next-intl';
+import { LocaleProvider } from '@/context/LocaleContext';
 import { ProductProvider } from '@/context/ProductContext';
 import { WishlistProvider } from '@/context/WishlistContext';
 import Header from '@/components/shared/Header';
@@ -21,14 +23,22 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const locale = useLocale();
+
   return (
-    <html lang="en" className={`${plusJakartaSans.variable} antialiased`}>
+    <html lang={locale} className={`${plusJakartaSans.variable} antialiased`}>
       <body>
-        <ProductProvider>
-          <Header />
-          <WishlistProvider>{children}</WishlistProvider>
-          <Footer />
-        </ProductProvider>
+        <NextIntlClientProvider>
+          <LocaleProvider locale={locale}>
+            <WishlistProvider>
+              <ProductProvider>
+                <Header />
+                {children}
+                <Footer />
+              </ProductProvider>
+            </WishlistProvider>
+          </LocaleProvider>
+        </NextIntlClientProvider>
       </body>
     </html>
   );

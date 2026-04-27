@@ -1,12 +1,11 @@
 import Image from 'next/image';
-import Link from 'next/link';
+import { Link } from '@/i18n/navigation';
 import { Product } from '@/types/product';
 import { GasStation, Lifebuoy, Profile2User } from 'iconsax-reactjs';
 import Button from '@/components/ui/Button';
 import WishlistButton from '@/components/ui/WishlistButton';
 
 interface ProductCardProps {
-  key: string;
   product: Product;
 }
 
@@ -23,7 +22,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
             <Link href={linkUrl}>{title}</Link>
           </h3>
           {category && <span className="text-secondary-300 block text-sm font-bold">{category}</span>}
-          <WishlistButton productId={productid} />
+          <WishlistButton productId={String(productid)} />
         </div>
         <div className="mt-auto flex flex-col pb-1">
           <div className="flex items-end justify-center">

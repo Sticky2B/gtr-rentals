@@ -1,10 +1,12 @@
 'use client';
 
-import { createContext, useContext, useState, useEffect } from 'react';
+import { createContext, useContext, useState, useEffect, useCallback } from 'react';
 
 interface WishlistContextType {
   wishlist: string[];
   toggleWishlist: (id: string) => void;
+  isFavorite: (id: string) => boolean;
+  isInitialized: boolean;
 }
 
 const WishlistContext = createContext<WishlistContextType | undefined>(undefined);
@@ -16,7 +18,11 @@ export const WishlistProvider = ({ children }: { children: React.ReactNode }) =>
   useEffect(() => {
     const saved = localStorage.getItem('wishlist');
     if (saved) {
-      setWishlist(JSON.parse(saved));
+      try {
+        setWishlist(JSON.parse(saved));
+      } catch (e) {
+        console.error('Failed to parse wishlist', e);
+      }
     }
     setIsInitialized(true);
   }, []);
@@ -27,11 +33,22 @@ export const WishlistProvider = ({ children }: { children: React.ReactNode }) =>
     }
   }, [wishlist, isInitialized]);
 
-  const toggleWishlist = (id: string) => {
+  const toggleWishlist = useCallback((id: string) => {
     setWishlist((prev) => (prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]));
-  };
+  }, []);
 
-  return <WishlistContext.Provider value={{ wishlist, toggleWishlist }}>{children}</WishlistContext.Provider>;
+  const isFavorite = useCallback(
+    (id: string) => {
+      return wishlist.includes(id);
+    },
+    [wishlist]
+  );
+
+  return (
+    <WishlistContext.Provider value={{ wishlist, toggleWishlist, isFavorite, isInitialized }}>
+      {children}
+    </WishlistContext.Provider>
+  );
 };
 
 export const useWishlist = () => {

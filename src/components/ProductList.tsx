@@ -1,12 +1,10 @@
 'use client';
 
-import Link from 'next/link';
-import { Product } from '@/types/product';
+import { Link } from '@/i18n/navigation';
 import ProductCard from '@/components/ProductCard';
 import { useProducts } from '@/context/ProductContext';
 
 interface ProductListProps {
-  products?: Product[];
   isFeatured?: boolean;
   isRecommended?: boolean;
   isWishlist?: boolean;
@@ -14,34 +12,34 @@ interface ProductListProps {
 }
 
 const ProductList = ({
-  products: incomingProducts,
   isFeatured = false,
   isRecommended = false,
   isWishlist = false,
   className = '',
 }: ProductListProps) => {
-  const { products: allProducts, loading } = useProducts();
+  const { filteredProducts, featuredProducts, recommendedProducts, wishlistProducts, loading } = useProducts();
 
   const CONFIG = {
-    featured: {
-      title: 'Most Popular',
-      showLink: true,
-    },
-    recommended: {
-      title: 'Recommended cars',
-      showLink: false,
-    },
+    featured: { title: 'Most Popular', showLink: true },
+    recommended: { title: 'Recommended cars', showLink: false },
+    wishlist: { title: 'Your Wishlist', showLink: false },
   };
 
-  const settings = isFeatured ? CONFIG.featured : isRecommended ? CONFIG.recommended : null;
+  const settings = isFeatured
+    ? CONFIG.featured
+    : isRecommended
+      ? CONFIG.recommended
+      : isWishlist
+        ? CONFIG.wishlist
+        : null;
 
-  // "Most Popular" - 4 most expensive cars
-  const mostPopular = [...allProducts].sort((a, b) => (b.price ?? 0) - (a.price ?? 0)).slice(0, 4);
-
-  // "Recommended" - Random 8 products
-  const recommended = [...allProducts].sort(() => Math.random() - 0.5).slice(0, 8);
-
-  const renderProducts = isFeatured ? mostPopular : isRecommended ? recommended : incomingProducts || allProducts;
+  const renderProducts = isFeatured
+    ? featuredProducts
+    : isRecommended
+      ? recommendedProducts
+      : isWishlist
+        ? wishlistProducts
+        : filteredProducts;
 
   if (loading) {
     return (
@@ -53,11 +51,10 @@ const ProductList = ({
           </div>
         )}
         <div
-          className={`grid w-full grid-cols-1 gap-8 ${
-            isFeatured || isRecommended || isWishlist
-              ? 'md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'
-              : 'lg:grid-cols-2 xl:grid-cols-3'
-          }`}
+          className={`grid w-full grid-cols-1 gap-8 ${isFeatured || isRecommended || isWishlist
+            ? 'md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'
+            : 'lg:grid-cols-2 xl:grid-cols-3'
+            }`}
         >
           {Array.from({ length: isFeatured || isRecommended || isWishlist ? 4 : 3 }).map((_, index) => (
             <div key={index} className="animate-pulse rounded-2xl border border-slate-100 bg-white p-6">
@@ -111,24 +108,20 @@ const ProductList = ({
         <div className="mb-5 flex w-full items-center justify-between">
           <h4 className="text-secondary-300 px-5 py-2.5 text-base font-semibold">{settings.title}</h4>
           {settings.showLink && (
-            <Link
-              className="text-primary-500 px-5 py-2.5 text-base font-semibold transition-colors hover:text-blue-800"
-              href="/cars"
-            >
+            <Link className="text-primary-500 px-5 py-2.5 text-base font-semibold hover:text-blue-800" href="/cars">
               View All
             </Link>
           )}
         </div>
       )}
       <div
-        className={`grid w-full grid-cols-1 gap-8 ${
-          isFeatured || isRecommended || isWishlist
-            ? 'md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'
-            : 'lg:grid-cols-2 xl:grid-cols-3'
-        } `}
+        className={`grid w-full grid-cols-1 gap-8 ${isFeatured || isRecommended || isWishlist
+          ? 'md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'
+          : 'lg:grid-cols-2 xl:grid-cols-3'
+          }`}
       >
         {renderProducts.map((product) => (
-          <ProductCard key={`prod-${product.productid}`} product={product} />
+          <ProductCard key={String(product.productid)} product={product} />
         ))}
       </div>
     </div>

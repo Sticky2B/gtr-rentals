@@ -5,7 +5,7 @@ import { useProducts } from '@/context/ProductContext';
 import Fuse from 'fuse.js';
 import { SearchNormal1, Setting4 } from 'iconsax-reactjs';
 import Image from 'next/image';
-import Link from 'next/link';
+import { Link } from '@/i18n/navigation';
 
 const Search = () => {
   const { products } = useProducts();
