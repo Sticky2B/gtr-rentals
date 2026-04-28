@@ -1,0 +1,27 @@
+{
+  "kind": "singleType",
+  "collectionName": "global_strings",
+  "info": {
+    "singularName": "global-string",
+    "pluralName": "global-strings",
+    "displayName": "GlobalString"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "home_title": {
+      "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    }
+  }
+}
