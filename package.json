@@ -1,36 +1,13 @@
 {
-  "name": "gtr-rentals",
-  "version": "0.1.0",
+  "name": "gtr-rentals-monorepo",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint",
-    "format": "prettier --write ."
+    "dev": "pnpm --parallel -r dev",
+    "build": "pnpm -r build",
+    "start": "pnpm -r start"
   },
   "dependencies": {
-    "fuse.js": "^7.3.0",
-    "iconsax-reactjs": "^0.0.8",
-    "next": "16.2.3",
-    "next-intl": "^4.9.1",
-    "react": "19.2.4",
-    "react-dom": "19.2.4",
-    "react-range-slider-input": "^3.3.5",
-    "use-debounce": "^10.1.1"
-  },
-  "devDependencies": {
-    "@tailwindcss/postcss": "^4",
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "babel-plugin-react-compiler": "1.0.0",
-    "eslint": "^9",
-    "eslint-config-next": "16.2.3",
-    "eslint-config-prettier": "^10.1.8",
-    "prettier": "^3.8.3",
-    "prettier-plugin-tailwindcss": "^0.7.2",
-    "tailwindcss": "^4",
-    "typescript": "^5"
+    "better-sqlite3": "12.8.0"
   }
 }
