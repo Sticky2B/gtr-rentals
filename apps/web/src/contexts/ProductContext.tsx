@@ -2,8 +2,9 @@
 
 import React, { createContext, useContext, useState, useEffect, useMemo, ReactNode, Suspense } from 'react';
 import { Product } from '@/types/product';
-import { useWishlist } from '@/context/WishlistContext';
+import { useWishlist } from './WishlistContext';
 import { useSearchParams } from 'next/navigation';
+import { getStrapiURL } from '@/lib/strapi';
 
 interface ProductContextType {
   products: Product[];
@@ -25,15 +26,12 @@ function ProductProviderContent({ children }: { children: ReactNode }) {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch('http://localhost:1338/api/cars?populate=*');
-        const data = await response.json();
+        const response = await fetch(`${getStrapiURL('/api/cars?populate=*')}`);
+        const json = await response.json();
 
-        const flattenedData = data.data.map((item: any) => ({
-          productid: item.id,
-          ...item.attributes,
-          imgSrc: item.attributes.image?.data?.attributes?.url
-            ? `http://localhost:1338${item.attributes.image.data.attributes.url}`
-            : '/placeholder-car.png',
+        const flattenedData = json.data.map((item: any) => ({
+          ...item,
+          imgSrc: item.imgSrc.url ? `${getStrapiURL(item.imgSrc.url)}` : '/placeholder-car.png',
         }));
 
         setProducts(flattenedData);

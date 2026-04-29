@@ -2,8 +2,9 @@
 
 import { useMemo, useState } from 'react';
 import { useDebouncedCallback } from 'use-debounce';
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { useProducts } from '@/context/ProductContext';
+import { usePathname } from '@/i18n/routing';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { useProducts } from '@/contexts/ProductContext';
 import Filter from '@/components/shared/Filter';
 import RangeSlider from 'react-range-slider-input';
 import 'react-range-slider-input/dist/style.css';

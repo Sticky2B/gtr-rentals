@@ -9,6 +9,4 @@ export interface Product {
   linkText?: string;
   linkUrl?: string;
   imgSrc?: string;
-  imgWidth?: number;
-  imgHeight?: number;
 }

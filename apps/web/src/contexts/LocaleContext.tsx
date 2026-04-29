@@ -35,13 +35,18 @@ export const LocaleProvider = ({ locale, children }: LocaleProviderProps) => {
     const nextLocale = locale === 'en' ? 'sr' : 'en';
 
     startTransition(() => {
-      router.replace(
-        // @ts-expect-error -- next-intl pathnames can be complex
-        { pathname, params },
-        { locale: nextLocale }
-      );
+      router.replace(pathname, { locale: nextLocale });
     });
   };
 
-  return <LocaleContext.Provider value={{ locale, toggleLocale, isPending }}>{children}</LocaleContext.Provider>;
+  const value = React.useMemo(
+    () => ({
+      locale,
+      toggleLocale,
+      isPending,
+    }),
+    [locale, isPending, pathname, params]
+  );
+
+  return <LocaleContext.Provider value={value}>{children}</LocaleContext.Provider>;
 };

@@ -1,11 +1,12 @@
 'use client';
 
 import React, { useState, useRef, useEffect } from 'react';
-import { useProducts } from '@/context/ProductContext';
+import { useProducts } from '@/contexts/ProductContext';
 import Fuse from 'fuse.js';
 import { SearchNormal1, Setting4 } from 'iconsax-reactjs';
 import Image from 'next/image';
 import { Link } from '@/i18n/routing';
+import strapiImageLoader from '@/utils/strapiImageLoader';
 
 const Search = () => {
   const { products } = useProducts();
@@ -98,7 +99,14 @@ const Search = () => {
                           setSearchQuery('');
                         }}
                       >
-                        <Image src={car.item.imgSrc || ''} width={72} height={32} alt="" loading="lazy" />
+                        <Image
+                          loader={strapiImageLoader}
+                          src={car.item.imgSrc || ''}
+                          width={72}
+                          height={32}
+                          alt=""
+                          loading="lazy"
+                        />
                         <span className="text-secondary-400 text-sm font-semibold">{car.item.title}</span>
                       </Link>
                     </li>

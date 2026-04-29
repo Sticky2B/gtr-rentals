@@ -1,9 +1,9 @@
 import type { Metadata } from 'next';
 import { Plus_Jakarta_Sans } from 'next/font/google';
 import { NextIntlClientProvider, useLocale } from 'next-intl';
-import { LocaleProvider } from '@/context/LocaleContext';
-import { ProductProvider } from '@/context/ProductContext';
-import { WishlistProvider } from '@/context/WishlistContext';
+import { LocaleProvider } from '@/contexts/LocaleContext';
+import { ProductProvider } from '@/contexts/ProductContext';
+import { WishlistProvider } from '@/contexts/WishlistContext';
 import Header from '@/components/shared/Header';
 import Footer from '@/components/shared/Footer';
 import '@/styles/globals.css';

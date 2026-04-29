@@ -1,7 +1,7 @@
 'use client';
 
 import { use } from 'react';
-import { useProducts } from '@/context/ProductContext';
+import { useProducts } from '@/contexts/ProductContext';
 import { notFound } from 'next/navigation';
 
 export default function CarDetailPage({ params }: { params: Promise<{ id: string }> }) {

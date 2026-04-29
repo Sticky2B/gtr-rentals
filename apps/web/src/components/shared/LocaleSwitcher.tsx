@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Global } from 'iconsax-reactjs';
-import { useLocaleContext } from '@/context/LocaleContext';
+import { useLocaleContext } from '@/contexts/LocaleContext';
 
 const LocaleSwitcher = () => {
   const { locale, toggleLocale, isPending } = useLocaleContext();

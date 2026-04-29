@@ -1,6 +1,6 @@
 'use client';
 
-import { useWishlist } from '@/context/WishlistContext';
+import { useWishlist } from '@/contexts/WishlistContext';
 import { Heart } from 'iconsax-reactjs';
 
 interface WishlistButtonProps {

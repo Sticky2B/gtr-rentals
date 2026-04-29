@@ -2,7 +2,7 @@
 
 import { Link } from '@/i18n/routing';
 import ProductCard from '@/components/ProductCard';
-import { useProducts } from '@/context/ProductContext';
+import { useProducts } from '@/contexts/ProductContext';
 
 interface ProductListProps {
   isFeatured?: boolean;

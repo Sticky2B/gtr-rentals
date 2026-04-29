@@ -12,7 +12,7 @@ node_modules/
 .cache/
 .strapi/
 build/
-public/uploads/  <-- You usually don't want to commit uploaded car photos to Git
+uploads/
 exports/
 
 # next.js

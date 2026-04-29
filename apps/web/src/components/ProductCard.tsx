@@ -2,6 +2,7 @@ import Image from 'next/image';
 import { Link } from '@/i18n/routing';
 import { Product } from '@/types/product';
 import { GasStation, Lifebuoy, Profile2User } from 'iconsax-reactjs';
+import strapiImageLoader from '@/utils/strapiImageLoader';
 import Button from '@/components/ui/Button';
 import WishlistButton from '@/components/ui/WishlistButton';
 
@@ -10,7 +11,7 @@ interface ProductCardProps {
 }
 
 const ProductCard = ({ product }: ProductCardProps) => {
-  const { productid, title, category, fuel, transmission, seats, price, imgSrc, imgWidth, imgHeight } = product;
+  const { productid, title, category, fuel, transmission, seats, price, imgSrc } = product;
   const linkUrl = `/cars/${productid}`;
   const linkText = 'Rent Now';
 
@@ -28,7 +29,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
           <div className="flex items-end justify-center">
             {imgSrc ? (
               <Link href={linkUrl}>
-                <Image src={imgSrc} width={imgWidth} height={imgHeight} alt="" loading="lazy" />
+                <Image loader={strapiImageLoader} src={imgSrc} width={392} height={180} alt={title} loading="lazy" />
               </Link>
             ) : (
               <Image
