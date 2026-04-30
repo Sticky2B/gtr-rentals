@@ -19,5 +19,6 @@ const config = ({ env }) => ({
         nps: env.bool('FLAG_NPS', true),
         promoteEE: env.bool('FLAG_PROMOTE_EE', true),
     },
+    url: env('STRAPI_ADMIN_BACKEND_URL', '/admin'),
 });
 exports.default = config;
