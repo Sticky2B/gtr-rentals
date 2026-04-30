@@ -54,9 +54,11 @@ function ProductProviderContent({ children }: { children: ReactNode }) {
     const maxPrice = Number(searchParams.get('maxPrice')) || Infinity;
 
     const filtered = products.filter((car) => {
-      const typeMatch = selectedTypes.length === 0 || selectedTypes.includes(car.category);
-      const capacityMatch = selectedCapacities.length === 0 || selectedCapacities.includes(String(car.seats));
-      const priceMatch = car.price <= maxPrice;
+      const typeMatch = selectedTypes.length === 0 || selectedTypes.includes(car.category || '');
+      const capacityMatch = selectedCapacities.length === 0 || selectedCapacities.includes(String(car.seats || ''));
+      const carPrice = car.price ?? 0;
+      const priceMatch = carPrice <= maxPrice;
+
       return typeMatch && capacityMatch && priceMatch;
     });
 
