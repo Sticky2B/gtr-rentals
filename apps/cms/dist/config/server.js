@@ -6,5 +6,13 @@ const config = ({ env }) => ({
     app: {
         keys: env.array('APP_KEYS'),
     },
+    transfer: {
+        remote: {
+            enabled: env.bool('STRAPI_TRANSFER_REMOTE_ENABLED', true),
+        },
+    },
+    webhooks: {
+        populateRelations: env.bool('WEBHOOKS_POPULATE_RELATIONS', false),
+    },
 });
 exports.default = config;
