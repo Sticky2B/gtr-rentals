@@ -1,20 +1,23 @@
 import HeroCard from '@/components/HeroCard';
+import { useTranslations } from 'next-intl';
 
 const HeroBanner = () => {
+  const t = useTranslations();
+
   return (
     <div className="flex w-full gap-8">
       <HeroCard
-        title="The Best Platform for Car Rental"
-        description="Ease of doing a car rental safely and reliably. Of course at a low price."
+        title={t('herobanner_left_title')}
+        description={t('herobanner_left_description')}
         imgSrc="/cars/koenigsegg-jesko.png"
         linkText="Rental Car"
         linkUrl="/cars/koenigsegg-jesko"
       />
       <HeroCard
         className="max-md:hidden"
-        title="Easy way to rent a car at a low price"
+        title={t('herobanner_right_title')}
         darkVersion={true}
-        description="Providing cheap car rental services and safe and comfortable facilities."
+        description={t('herobanner_right_description')}
         imgSrc="/cars/nissan-gtr.png"
         imgSize={340}
         linkText="Rental Car"
